@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>My first ever pipeline project </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Maoblogs</a>
+					</header>
+
+                <!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li ><a href="index.html">Home</a></li>
+							<li><a href="aboutme.html">About me</a></li>
+                            <li><a href="contactme.html">Contact Me</a></li>
+                        
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+                                    <span class="date">June 19, 2020</span>
+									<h1>My first ever pipeline <br />
+                                        project.</h1>
+								</header>
+
+                                <!-- Text stuff -->
+                                <hr>
+									<h2>Hello World</h2>
+									<p>I've never really written a blog anymore and I really dont know how, but what I will share with you the world
+                                    or whoever is interested, my Journey into DevOps. This begins with my first ever project in DevOps - and that is building
+                                    a fully functional pipeline for a JS app by hitting one command <code>terraform init</code>. Our job was to create a load balanced and autoscaled 2 tier architecture (for the app and db).
+                                    The Architecture also needed to be a "Highly Available" application, meaning that it has redundancies across all three availability zones. A lot right, especially on my first big project, but more
+                                    than anything I was excited and felt confident.
+                            
+                                
+                                    Finally, this is a <a href="#">link</a>.</p>
+                               
+                                     <hr>
+                                    <h2> Day 1 </h2>
+
+                                    <p>
+                                        The first step was to create a Jenkins slave and master nodes for our pipelines
+                                        For this particular project we (the team) utilised Chef as our configuration management tool, (I know, not ansible huh), but I wil use ansible for the next project! The first part
+                                        of the CI/CD pipeline was then to run tests and cookbook builds in Jenkins automatically after any changes to the code (through webhooks) <code>chef exec rspec spec</code>
+                                        . The next stage of our CI/CD pipeline is to create an AMI image using packer. I never have used packer before this and almost had no clue how I would do this. However I then realised packer
+                                        is written in JSON (JavaScript Object Notation) and then i realised I've used this before scripting in python. Puppet in short is a configuration managment tool that is used for configuring 
+										 to create AMI images for Amazon Web Services to run an instance that will serve as our environments . 
+										 
+
+										<figure>
+										<img src="/images/Code_JyDwcU141r.png" alt="", class="center" height="500px">
+											<figcaption><em>*A sneak pic into the Packer.json file where I set aws perimissions to let Jenkins create an AMI image</em></figcaption>
+										
+										
+									</figure>
+                                    </p>
+									<hr />
+                                    <h2>AWS Shenanigians</h2>
+                                    <p>
+                                        The cloudformation tool used for this project was <b> Amazon Web Services (AWS)</b>, before I completed my AWS Cloud Practiotiner Certification (a story I hope to share in the future). I almost had no clue
+                                        the whats on hows on this service and its capabilities. I then realised whilst on this project, the capabilties of hosting environments on the cloud. The ability to scale (from one to 1000 instance) and automate 
+                                        processes is second to none. But anyways, I had to learn how to create an instance with a Virtual Private Cloud first before even trying to automate it using puppet. 
+                                    </p>
+
+
+                                    <h2>Replica Sets sets sets</h2>
+                                    <p> </p>
+
+                                    <h2>The first blunder</h2>
+                                       <p>A week left to get this done and we just couldn't the NodeJs app and mongodb database to "seed" through terraform scripting. After actual days of colloboration we finally managed to figure it and yep it
+                                        because they were on different ports :D. Despite this loss of time and our frustruation, I was positive that we would get this project done in time, after all - who doesnt love a challenge.
+                                        </p> 
+                                    <h5>Monitoring using the ELK stack</h5>
+                                    <p>s
+                                        Immutable architectures are notoriously difficult to debug because we no longer have access to the instances and thus do not have access to the logs for those machines.
+                                        Log consolidation allows us to have logs files broadcast to a central repository by the instances themselves which allows us to more easily view them.
+                                        The ELK stack is a commonly used system for this purpose. Elk is made up of Elastic Search, Logstash and Kibana and also Beats.
+                                    </p>
+                                    <figure>
+                                    <img src="images/elk-stack-elkb-diagram.svg" alt="" height= 500 px class="center" />
+
+                                        <figcaption><em> *Kibana allows you to create dashboards that will help you understand and visualise all your data and logs</em>
+                                        <br><em> *Elasticsearch is a search engine that supports real-time search</em></a1><br>
+                                        <em> *Kibana allows you to create dashboards that will help you understand and visualise all your data and logs</em>
+                                    </figcaption> 
+                                    </figure>
+                                    <h6>Heading Level 6</h6>
+									<hr />
+									<header>
+										<h2>Heading with a Subtitle</h2>
+										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+									</header>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+									<header>
+										<h3>Heading with a Subtitle</h3>
+										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+									</header>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+									<header>
+										<h4>Heading with a Subtitle</h4>
+										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+									</header>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<hr />
+
+
+
+											<h3>Icons</h3>
+											<ul class="icons">
+												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+												<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+												<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+											</ul>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
