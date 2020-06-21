@@ -49,31 +49,29 @@
                                 <hr>
 									<h2>Hello World</h2>
 						
-									<p>I've never really written a blog anymore and I really dont know how, but what I will share with you the world
+									<p>I've never really written a blog anymore and I really don't know how, but what I will share with you, the world
                                     or whoever is interested, my Journey into DevOps. This begins with my first ever project in DevOps - and that is building
-                                    a fully functional pipeline for a JS app by hitting one command <code>terraform init</code>. Our job was to create a load balanced and autoscaled 2 tier architecture (for the app and db).
+                                    a fully functional pipeline for a JS app by hitting one command <code>terraform apply</code>. The job was to create a load balanced autoscaling 2 tier architecture (for the app and database).
                                     The Architecture also needed to be a "Highly Available" application, meaning that it has redundancies across all three availability zones. A lot right, especially on my first big project, but more
                                     than anything I was excited and felt confident.
-                            
-                                
-                                    Finally, this is a <a href="#">link</a>.</p>
+                                  </p>
                                
                                      <hr>
 									<h2> Day 1 </h2>
 									<h5>it was a lot</h5>
 
                                     <p>
-                                        For this particular project I utilised Chef as the main configuration management tool to provision the environment, (I know, not ansible huh), but I wil use ansible for the next project! The first part
+                                        For this particular project I utilised Chef as the main configuration management tool to provision the environment, (I know, not ansible huh), but I wil use ansible for the next project so don't worry! The first part
                                         of the CI/CD pipeline was to run integration and unit tests from Chef in Jenkins automatically after any changes to the code (through webhooks) using <code>chef exec rspec spec</code> and <code>kitchen test</code>
-                                        . The next stage of our CI/CD pipeline is to create an AMI image using packer. I never have used packer before this and almost had no clue how I would do this. However I then realised packer
-                                        is written in JSON (JavaScript Object Notation), I then realised I've used this before scripting in python. Packer, in short is an open source tool that is used 
-										 to create images (snapshots or templates used for the creation of virtual servers)  that can be used for multiple platforms, including Amazon Web Services (AWS) which I used for this particular project. 
+                                        . The next stage of our CI/CD pipeline was to create an AMI image using packer. I've never used packer before this and almost had no clue how I would do this. However, I then realised Packer
+                                        is written in JSON (JavaScript Object Notation), which I've conveniently used before whilst learning python. Packer, in short is an open source tool that is used 
+										 to create images (snapshots or templates used for the creation of virtual servers) that can be used for multiple platforms, including Amazon Web Services (AWS) which I used for this particular project. 
 										 Although I faced many challenges including setting my environmental variables correctly, I managed to script the json file to call AWS to create an AMI image using the chef script that'll provision my environment.
 										 
 
 										<figure>
 										<img src="/images/Code_JyDwcU141r.png" alt="", class="center" height="500px">
-											<figcaption><em><small>A sneak pic into the Packer.json file where I allowed Packer to create an AMI image, This is the code <a href="https://github.com/AMao7/packer_aws">link</a></small></p></em></figcaption>
+										<a href="https://github.com/AMao7/packer_aws"><figcaption><em><small>A sneak pic into the Packer.json file where I allowed Packer to create an AMI image, press link for code </a></small></p></em></figcaption>
 										
 										
 									</figure>
@@ -82,26 +80,27 @@
                                     <h2>AWS Shenanigians</h2>
                                     <p>
                                         The cloudformation tool used for this project was <b> Amazon Web Services (AWS)</b>, and before I completed my AWS Cloud Practitioner Certification (a story I hope to share in the future). I almost had no clue
-                                        the whats on hows on this service and its capabilities. I then realised whilst on this project, the capabilties of hosting environments on the cloud. The ability to scale (from 1 to 1000 instances) is second to none. But anyways, I had to learn how to create an instance with a Virtual Private Cloud first before even trying to automate it using puppet. 
+										the whats and hows on this service and its capabilities. Whilst working on AWS, I truly understood the capabilities of hosting environments on the cloud. The ability to scale (from 1 to 1000 instances) is second to none. But anyways, I had to learn how to create an instance with a Virtual Private Cloud on AWS first,
+										 before even trying to automate it using Packer. 
                                     </p>
 
 
                                     <h2>Replica Sets sets sets</h2>
-                                    <p> A key requiredment for this project was to replicate the database used for the app in the event of downtime. A ReplicaSet's puprose is to maintain a stable number (3 in this case)
-										of replica databases running at any given time to ensure zero downtime. Doing this was quite difficult and took a lot of understanding of networks to fulfill. To create a ReplicaSet, you first
-									have to establish the primary database, the primary node will receives all write operations. This will constantly monitor the secondary databases by pinging their ip addresses and checking it's 'heartbeat'. 
+                                    <p> A key requirement for this project was to replicate the database used for the app in the event of downtime. A ReplicaSet's purpose is to maintain a stable number (3 in this case)
+										of  databases running at any given time to ensure zero downtime. Doing this was quite difficult and took a lot of understanding of networks to fulfill. To create a ReplicaSet, you first
+									have to establish the primary database, of which the primary node will receives all write operations. This will constantly monitor the secondary databases by pinging their ip addresses and checking it's 'heartbeat'. 
 									In the case of a downtime, the secondary databases take an election and one of them becomes the new primary! Pretty cool right, well I thought so anyways. <code>rs.initate</code> begins the ReplicaSet, you can then <code>rs.add('secondary-ip-addresses')</code> to then 
 									add your secondary databases (2 of them were used in this project). </p>
 									
 									<figure>
-										<img src="/images/Code_foGctVRuuM.png" alt="", class="center">
-										<figcaption><em><small> Shell commands in Terraform for the database ReplicaSet that will run everytime the environment is spun up- code <a href="https://github.com/AMao7/TerraformAppProject/blob/master/scripts/db/init.sh.tpl" >link</a></small></em> </figcaption>
+										<img src="/images/Code_foGctVRuuM.png" alt="", class="center" sizes="100" height="400">
+										 <a href="https://github.com/AMao7/TerraformAppProject/blob/master/scripts/db/init.sh.tpl" ><figcaption><em><small> Shell commands in Terraform for the database ReplicaSet that will run everytime the environment is spun up</a></small></em> </figcaption>
 									</figure>
 									<hr>
 
                                     <h2>Time was slipping away</h2>
-                                       <p>A week left to get this done and we just couldn't the NodeJs app and mongodb database to "seed" through terraform scripting. After actual days of colloboration we finally managed to figure it and yep it
-                                        because they were on different ports :D. Despite this loss of time and our frustruation, I was positive that we would get this project done in time, after all - who doesnt love a challenge.
+                                       <p>A week left to get this done and we just couldn't the NodeJs app and mongodb database to "seed" through terraform scripting. After actual days of collaboration we finally managed to figure it and yep it
+                                        because they were on different ports :D. Despite this loss of time and our frustration, I was positive that we would get this project done in time, after all - who doesn't love a challenge.
 										</p> 
 										
 										<hr>
@@ -114,104 +113,92 @@
                                     <figure>
                                     <img src="images/elk-stack-elkb-diagram.svg" alt="" height= 500 px class="center" />
 
-                                        <figcaption><em> *Kibana allows you to create dashboards that will help you understand and visualise all your data and logs</em>
-                                        <br><em> *Elasticsearch is a search engine that supports real-time search</em></a1><br>
-                                        <em> *Kibana allows you to create dashboards that will help you understand and visualise all your data and logs</em>
+                                        <figcaption><em> Kibana allows you to create dashboards that will help you understand and visualise all your data and logs</em>
+                                        <em> , Elasticsearch is a search engine that supports real-time search</em></a1>
+                                        <em> and Logstash allows you to store and collect logs for future use.</em>
                                     </figcaption> 
 									</figure>
 
 
 									<hr />
 
-									<header>
-										<h2>Project Complete</h2>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+								
+										<h2>Terraform</h2>
+										<p> Terraform is the main orchestration tool I used in this project and will manage the whole infrastructure. All the different services in AWS (VPC, EC2 instances for app/db/elk)
+											that I needed for this project was done through terraform. You can use terraform to handle your infrastructure as code and to be honest it is fairly simple to use, so I 
+											definitely do recommend working with it, if you're dealing with infrastructure. Terraform can run scripts inside the environment (through shell commands) if you wanted it do, and that's exactly what I did
+											to get the replica sets I talked about earlier to communicate with each other. <p>
+
+											</p>
+									
+											
+											
+											After two weeks of solid work, the project was finally complete. By running <code>terraform apply</code> our whole infrastructure is created, terraform will use the images made
+											from Packer and will boot up instances for our app, our database (and it's ReplicaSets) and our monitoring tool ELK stack. 
+
+											<img src="/images/Terraformpicv2.png" alt="" class="center" width="1000" height="450"><a href="https://github.com/AMao7/TerraformAppProject" ><em>A close look into the main.tf file where I built services
+												in AWS for the infrastructure</a></small></p></em>
 									
                         
-									<hr />
+									<hr>
 
-									<header>
+							
 										<h2>Challenges</h2>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+										<p>I faced a lot of challenges during this project including getting the ReplicaSets to communicate with each other (and testing this by terminating the instances to see if one takes over). I also had issues
+										   getting the app and databases the seed over the cloud. These were all valid reasons for me to get demotivated and frustrated, but to be honest I quite enjoyed dealing with the setbacks, I took
+										   my time to understand each problem and managed to both solve them and learn something new at the same time!
+										</p>
 
 										<hr>
 
 										<h2>What I learnt</h2>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+										<p>I learnt the power of perseveration and getting things done quickly with a deadline.
+											<p></p>
 
+											And also some cool technologies:
 
+											<ul>
+												
+												<li>AWS (VPC, EC2)</li>
+												<li>Bash</li>
+												<li>Chef</li>
+												<li>Git- Version Control</li>
+												<li>Terraform</li>
+												<li>Packer</li>
+												
+												<li>ELK Stack</li>
+												
+												<li>Jenkins</li>
 
-
-
-
-											<h3>Icons</h3>
-											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-												<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
 											</ul>
+										</p>
 
 							</section>
 
 					</div>
 
 				<!-- Footer -->
-					<footer id="footer">
+				<footer id="footer">
+
+					<section class="split contact">
+
 						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://twitter.com/MaoAbdimalik" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.instagram.com/amao707/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/AMao7" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
 						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+		
 
-			</div>
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; MaoBlogs</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
